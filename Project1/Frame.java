@@ -17,8 +17,18 @@ public class Frame {
                                     // and nothing needs to be done when the
                                     // value is changed, so there is absolutely
                                     // no reason for it to not be public.
+    
+    public final int frameNumber;
 
     public int getBlockID() { return blockID; }
+
+    /**
+     * Construct a new frame and set its frame number
+     * @param num frame number
+     */
+    Frame(int num) {
+        frameNumber = num;
+    }
 
     /**
      * Get a zero indexed record from the content of the dataframe.
