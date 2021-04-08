@@ -102,10 +102,13 @@ public class Frame {
      */
     public void close() {
         if (blockID > 0) {
-            blockID = -1;
-
             // If the frame is dirty, we need to write it back to disk
             if (dirty) {
+                System.out.println("Writing contents of frame #"
+                    + Integer.toString(frameNumber)
+                    + " to disk in block #"
+                    + Integer.toString(blockID));
+
                 try {
                     Path p = Paths.get("Dataset/F" + Integer.toString(blockID) + ".txt");
                     Files.write(p, content);
@@ -115,6 +118,8 @@ public class Frame {
                     e.printStackTrace();
                 }
             }
+
+            blockID = -1;
         }
     }
 }
