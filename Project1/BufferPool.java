@@ -66,6 +66,8 @@ public class BufferPool {
         if (f != null) {
             if (f.pinned) {
                 System.out.println("Block #" + bid + " already pinned!");
+            } else {
+                System.out.println("Block #" + bid + " was not already pinned");
             }
 
             f.pinned = true;
