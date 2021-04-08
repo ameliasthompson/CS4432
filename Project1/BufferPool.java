@@ -91,6 +91,15 @@ public class BufferPool {
     }
 
     /**
+     * Write all dirty frames to disk.
+     */
+    public void close() {
+        for (Frame i : frames) {
+            i.close();
+        }
+    }
+
+    /**
      * Find an empty frame if there is one.
      * @return the empty frame or null
      */
