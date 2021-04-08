@@ -51,7 +51,7 @@ public class Frame {
      */
     public boolean writeRecord(int j, byte[]record) {
         try {
-            if (blockID > 0 && j > 0 && j <= NUM_RECORDS_FILE) {
+            if (blockID > 0 && j >= 0 && j <= NUM_RECORDS_FILE) {
                 System.arraycopy(record, 0, content, j * RECORD_SIZE, RECORD_SIZE);
                 dirty = true;
                 return true;
