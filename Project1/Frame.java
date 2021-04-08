@@ -26,7 +26,7 @@ public class Frame {
      * @return the jth record in the dataframe
      */
     public byte[] getRecord(int j) {
-        if (blockID > 0 && j > 0 && j <= NUM_RECORDS_FILE) {
+        if (blockID > 0 && j >= 0 && j <= NUM_RECORDS_FILE) {
             return Arrays.copyOfRange(content, j * RECORD_SIZE, (j + 1) * RECORD_SIZE);
         
         } else {
