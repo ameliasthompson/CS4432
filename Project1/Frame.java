@@ -21,13 +21,13 @@ public class Frame {
     public int getBlockID() { return blockID; }
 
     /**
-     * Get a record from the content of the dataframe.
-     * @param j record number
+     * Get a zero indexed record from the content of the dataframe.
+     * @param j zero indexed record number
      * @return the jth record in the dataframe
      */
     public byte[] getRecord(int j) {
         if (blockID > 0 && j > 0 && j <= NUM_RECORDS_FILE) {
-            return Arrays.copyOfRange(content, (j - 1) * RECORD_SIZE, j * RECORD_SIZE);
+            return Arrays.copyOfRange(content, j * RECORD_SIZE, (j + 1) * RECORD_SIZE);
         
         } else {
             return null;
@@ -35,14 +35,14 @@ public class Frame {
     }
 
     /**
-     * Write RECORD_SIZE bytes to the appropriate location in file.
-     * @param j record number
+     * Write RECORD_SIZE bytes to the appropriate location in file. (zero index)
+     * @param j zero indexed record number
      * @param record contents of record
      */
     public void writeRecord(int j, byte[]record) {
         try {
             if (blockID > 0 && j > 0 && j <= NUM_RECORDS_FILE) {
-                System.arraycopy(record, 0, content, (j - 1) * RECORD_SIZE, RECORD_SIZE);
+                System.arraycopy(record, 0, content, j * RECORD_SIZE, RECORD_SIZE);
                 dirty = true;
             }
         
@@ -53,8 +53,8 @@ public class Frame {
     }
 
     /**
-     * Read a new block into memory in this frame.
-     * @param id block number
+     * Read a 1 indexed new block into memory in this frame.
+     * @param id one indexed block number
      */
     public void open(int id) {
         blockID = id;
