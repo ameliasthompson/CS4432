@@ -78,7 +78,11 @@ public class BufferPool {
      * @param bid block id
      */
     public void unpin(int bid) {
-        Frame f = getBlock(bid);
+        // We can't use getblock function because that'll load it if it's not there
+        Frame f = null;
+        for (Frame i : frames) {
+            if (i.getBlockID() == bid) f = i;
+        }
         
         if (f != null) {
             if (!f.pinned) {
@@ -87,6 +91,10 @@ public class BufferPool {
 
             f.pinned = false;
             System.out.println("Block #" + bid + " unpinned in frame #" + f.frameNumber);
+        
+        } else {
+            System.out.println("Can not unpin Block #" + bid
+                + " because it's not in memory!");
         }
     }
 
