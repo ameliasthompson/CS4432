@@ -71,6 +71,11 @@ public class Frame {
 
         // If it's a valid blockID, then we need to load the content from disk.
         if (blockID > 0) {
+            System.out.println("Loading contents of block #"
+                + Integer.toString(blockID)
+                + " from disk into frame #"
+                + Integer.toString(frameNumber));
+
             try {
                 // We're jumping through a bunch of hoops here to make sure
                 // that java does not automatically size the array. This is
