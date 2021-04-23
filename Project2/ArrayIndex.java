@@ -52,16 +52,25 @@ public class ArrayIndex {
         // Process every record in the database.
         for (int i = 1; i <= DBUtil.NUM_RECORDS; i++) {
             int value = DBUtil.getRandomV(i);
-            ArrayEntry entry = entries[value - 1]; // RandomV starts at 1 not 0
+            addEntry(value, i);
+        }
+    }
 
-            // If there is no array entry yet, we need to make one
-            if (entry == null) {
-                entries[value - 1] = new ArrayEntry(value, i);
+    /**
+     * Add a new entry to the index
+     * @param v RandomV
+     * @param i record id
+     */
+    public void addEntry(int v, int i) {
+        ArrayEntry entry = entries[v - 1]; // RandomV starts at 1 not 0
 
-            // Otherwise we need to append to the existing one
-            } else {
-                entries[value - 1] = new ArrayEntry(entry, i);
-            }
+        // If there is no array entry yet, we need to make one
+        if (entry == null) {
+            entries[v - 1] = new ArrayEntry(v, i);
+
+        // Otherwise we need to append to the existing one
+        } else {
+            entries[v - 1] = new ArrayEntry(entry, i);
         }
     }
 

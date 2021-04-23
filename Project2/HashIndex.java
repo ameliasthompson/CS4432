@@ -49,16 +49,25 @@ public class HashIndex {
         // Process every record in the database.
         for (int i = 1; i <= DBUtil.NUM_RECORDS; i++) {
             int value = DBUtil.getRandomV(i);
-            int key = hash(value);
+            addEntry(value, i);
+        }
+    }
 
-            // If there is no hash entry in that bucket yet, we need to make one
-            if (entries[key] == null) {
-                entries[key] = new HashEntry(key, i);
+    /**
+     * Add a new entry to the index
+     * @param v RandomV
+     * @param i record id
+     */
+    public void addEntry(int v, int i) {
+        int key = hash(v);
 
-            // Otherwise we need to append to the existing one
-            } else {
-                entries[key] = new HashEntry(entries[key], i);
-            }
+        // If there is no hash entry in that bucket yet, we need to make one
+        if (entries[key] == null) {
+            entries[key] = new HashEntry(key, i);
+
+        // Otherwise we need to append to the existing one
+        } else {
+            entries[key] = new HashEntry(entries[key], i);
         }
     }
 
