@@ -110,4 +110,48 @@ public class ArrayIndex {
             return null;
         }
     }
+
+    /**
+     * Find the records with RandomV that fit within the provided (exclusive)
+     * range.
+     * @param l lower limit (exclusive)
+     * @param u upper limit (exclusive)
+     * @return array of rids or null
+     */
+    public int[] findRecordsRange(int l, int u) {
+        if (l >= u) {
+            System.out.println("Error: Attempted to find record with invalid RandomV range.");
+            return null;
+        }
+
+        // Cap l and u
+        l = Math.max(l, 1);
+        u = Math.min(u, 5000);
+
+        ArrayList<Integer> records = new ArrayList<Integer>();
+        for (int i = l + 1; i < u; i++) {
+            ArrayEntry entry = entries[i - 1]; // RandomV starts at 1, but our array starts at 0
+            if (entry != null) {
+                // We get all the records that match in the entry
+                for (int j : entry.rids) {
+                    records.add(j);
+                    System.out.println(DBUtil.getRecordText(j));
+                }
+            }
+        }
+
+        if (records.size() > 0) {
+            // Because we can't use int in array lists, we have to jump through
+            // some hoops to return an int[] here instead of just using toArray()
+            int[] tmp = new int[records.size()];
+            for (int i = 0; i < records.size(); i++) {
+                tmp[i] = records.get(i);
+            }
+
+            return tmp;
+        } else {
+            // Return null if there are no records
+            return null;
+        }
+    }
 }
