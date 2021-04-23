@@ -82,7 +82,10 @@ public class ArrayIndex {
             ArrayList<Integer> records = new ArrayList<Integer>();
             for (int i : entry.rids) {
                 int value = DBUtil.getRandomV(i);
-                if (value == v) { records.add(i); }
+                if (value == v) {
+                    records.add(i);
+                    System.out.println(DBUtil.getRecordText(i));
+                }
             }
 
             if (records.size() > 0) {
