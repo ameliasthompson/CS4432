@@ -7,6 +7,8 @@ import java.nio.file.Path;
 public class DBUtil {
 
     public static final int NUM_RECORDS_IN_BLOCK = 100;
+    public static final int NUM_BLOCKS = 99;
+    public static final int NUM_RECORDS = NUM_BLOCKS * NUM_RECORDS_IN_BLOCK;
     public static final int RECORD_SIZE = 40;
     public static final int RANDOM_V_OFFSET = 33;
     public static final int RANDOM_V_SIZE = 4;
