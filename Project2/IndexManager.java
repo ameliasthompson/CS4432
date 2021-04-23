@@ -15,5 +15,7 @@ public class IndexManager {
             hIndex.addEntry(value, i);
             aIndex.addEntry(value, i);
         }
+
+        DBUtil.getAndResetReadCounter();
     }
 }
