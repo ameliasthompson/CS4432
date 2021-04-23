@@ -31,6 +31,12 @@ public class DBUtil {
         }
     }
 
+    public static int getAndResetReadCounter() {
+        int tmp = readCounter;
+        readCounter = 0;
+        return tmp;
+    }
+
     /**
      * Get the RandomV value of a database record.
      * @param rid record id
