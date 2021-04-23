@@ -6,10 +6,10 @@ import java.nio.file.Path;
 
 public class DBUtil {
 
-    private static final int NUM_RECORDS_IN_BLOCK = 100;
-    private static final int RECORD_SIZE = 40;
-    private static final int RANDOM_V_OFFSET = 33;
-    private static final int RANDOM_V_SIZE = 4;
+    public static final int NUM_RECORDS_IN_BLOCK = 100;
+    public static final int RECORD_SIZE = 40;
+    public static final int RANDOM_V_OFFSET = 33;
+    public static final int RANDOM_V_SIZE = 4;
 
     /**
      * Get the RandomV value of a database record.
