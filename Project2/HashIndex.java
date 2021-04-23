@@ -43,17 +43,6 @@ public class HashIndex {
     }
 
     /**
-     * Construct and populate a hash index of RandomV.
-     */
-    public HashIndex() {
-        // Process every record in the database.
-        for (int i = 1; i <= DBUtil.NUM_RECORDS; i++) {
-            int value = DBUtil.getRandomV(i);
-            addEntry(value, i);
-        }
-    }
-
-    /**
      * Add a new entry to the index
      * @param v RandomV
      * @param i record id

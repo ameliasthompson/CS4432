@@ -46,17 +46,6 @@ public class ArrayIndex {
     }
 
     /**
-     * Construct and populate an ArrayIndex of RandomV.
-     */
-    public ArrayIndex() {
-        // Process every record in the database.
-        for (int i = 1; i <= DBUtil.NUM_RECORDS; i++) {
-            int value = DBUtil.getRandomV(i);
-            addEntry(value, i);
-        }
-    }
-
-    /**
      * Add a new entry to the index
      * @param v RandomV
      * @param i record id
