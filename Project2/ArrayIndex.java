@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 // A lot of this class is copied from HashIndex and slightly modified because
 // they ended up having similar implementations. In an ideal world I would have
@@ -39,6 +40,8 @@ public class ArrayIndex {
             int[] tmp = new int[e.rids.length + 1];
             System.arraycopy(e.rids, 0, tmp, 0, e.rids.length);
             tmp[e.rids.length] = i;
+
+            Arrays.sort(tmp);
 
             value = e.value;
             rids = tmp;

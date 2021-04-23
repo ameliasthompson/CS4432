@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class HashIndex {
 
@@ -36,6 +37,8 @@ public class HashIndex {
             int[] tmp = new int[e.rids.length + 1];
             System.arraycopy(e.rids, 0, tmp, 0, e.rids.length);
             tmp[e.rids.length] = i;
+
+            Arrays.sort(tmp);
 
             key = e.key;
             rids = tmp;
