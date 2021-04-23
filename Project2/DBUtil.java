@@ -13,6 +13,24 @@ public class DBUtil {
     public static final int RANDOM_V_OFFSET = 33;
     public static final int RANDOM_V_SIZE = 4;
 
+    private static int currentBID = 0;
+    private static int readCounter = 0;
+    private static byte[] file = null;
+
+    /**
+     * Read the block into memory if it isn't the currently held block and
+     * increment the read counter if a block is read.
+     * @param bid block id
+     * @throws IOException
+     */
+    private static void readFile(int bid) throws IOException {
+        if (currentBID != bid) {
+            Path p = Paths.get("Project2Dataset/F" + Integer.toString(bid) + ".txt");
+            file = Files.readAllBytes(p);
+            readCounter++;
+        }
+    }
+
     /**
      * Get the RandomV value of a database record.
      * @param rid record id
@@ -24,11 +42,8 @@ public class DBUtil {
         if (rid < 0) { return -1; }
         int bid = (rid / NUM_RECORDS_IN_BLOCK) + 1; // Have to adjust because block is one indexed
 
-        // Read the block file into memory:
-        Path p = Paths.get("Project2Dataset/F" + Integer.toString(bid) + ".txt");
-        byte[] file;
         try {
-            file = Files.readAllBytes(p);
+            readFile(bid);
         } catch (IOException e) {
             System.out.println("Error opening block " + bid + " file.");
             e.printStackTrace();
