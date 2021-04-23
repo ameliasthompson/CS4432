@@ -34,6 +34,7 @@ public class DBUtil {
     public static int getAndResetReadCounter() {
         int tmp = readCounter;
         readCounter = 0;
+        currentBID = 0;
         return tmp;
     }
 
