@@ -28,6 +28,7 @@ public class DBUtil {
             Path p = Paths.get("Project2Dataset/F" + Integer.toString(bid) + ".txt");
             file = Files.readAllBytes(p);
             readCounter++;
+            currentBID = bid;
         }
     }
 
