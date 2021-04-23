@@ -1,7 +1,12 @@
 import java.util.ArrayList;
 
 public class TableScan {
-    
+
+    /**
+     * Use a full table scan to find all records with RandomV v
+     * @param v value
+     * @return
+     */
     public static int[] findRecords(int v) {
         if (v < 1 || v > 5000) {
             System.out.println("Error: Attempted to find record with invalid RandomV value.");
