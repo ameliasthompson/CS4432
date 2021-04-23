@@ -70,4 +70,32 @@ public class DBUtil {
 
         return Integer.parseInt(new String(value));
     }
+
+    public static String getRecordText(int rid) {
+        // First figure out which block the record is in:
+        rid--; // Record id is one indexed, but it's easier to find with zero index.
+        if (rid < 0) { return "ERROR"; }
+        int bid = (rid / NUM_RECORDS_IN_BLOCK) + 1; // Have to adjust because block is one indexed
+
+        try {
+            readFile(bid);
+        } catch (IOException e) {
+            System.out.println("Error opening block " + bid + " file.");
+            e.printStackTrace();
+            return "ERROR";
+        }
+
+        // Isolate the record we're interested in:
+        byte[] value = new byte[RECORD_SIZE];
+        try {
+            int srcPos = (rid % NUM_RECORDS_IN_BLOCK) * RECORD_SIZE;
+            System.arraycopy(file, srcPos, value, 0, RECORD_SIZE);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Record " + rid + " could not be copied from block " + bid + " file.");
+            e.printStackTrace();
+            return "ERROR";
+        }
+
+        return new String(value);
+    }
 }
