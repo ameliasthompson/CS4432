@@ -17,5 +17,7 @@ public class IndexManager {
         }
 
         DBUtil.getAndResetReadCounter();
+
+        System.out.println("The hash-based and array-based indexes are built successfully. Program is ready and waiting for user command.");
     }
 }
