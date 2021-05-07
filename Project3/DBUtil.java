@@ -24,7 +24,7 @@ public class DBUtil {
      */
     private static void readFile(int bid, String relation) throws IOException {
         if (currentBID != bid) {
-            Path p = Paths.get("Project2Dataset-"
+            Path p = Paths.get("Project3Dataset-"
                     + relation + "/" + relation + Integer.toString(bid) + ".txt");
             file = Files.readAllBytes(p);
             readCounter++;
