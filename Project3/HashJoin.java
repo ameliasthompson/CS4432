@@ -8,7 +8,7 @@ public class HashJoin {
         // resets the cache.
         DBUtil.getAndResetReadCounter();
 
-        HashTable.Bucket[] buckets = new HashTable("A").getBuckets();
+        HashTable.Bucket[] buckets = new HashTable("A", true).getBuckets();
 
         // Iterate over all of relation B
         for (int i = 1; i <= DBUtil.NUM_RECORDS; i++) {
